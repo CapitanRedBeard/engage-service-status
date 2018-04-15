@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
 import './Services.css';
+import LoadedStatusCard from './LoadedStatusCard'
+import UnloadedStatusCard from './UnloadedStatusCard'
 
 const propTypes = {
     services: PropTypes.array,
@@ -18,11 +20,24 @@ const Services = ({ services, statuses }) => {
     return (
         <div className="Services">
             {
-                services.map(service => (
-                    <Card key={`Service-${service.name}`} loading title={`${service.name} Service`} style={{ width: '100%', margin: '10px 20px' }}>
-                        Whatever content
-                </Card>
-                ))
+                services.map(service => {
+                    const status = statuses[service.name];
+                    return (
+                        status
+                            ? (
+                                <LoadedStatusCard
+                                    serviceName={service.name}
+                                    status={status} 
+                                />
+                            ) 
+                            : (
+                                <UnloadedStatusCard
+                                    serviceName={service.name}
+                                    status={status}
+                                />
+                            )
+                    )
+                })
             }
         </div>
     );

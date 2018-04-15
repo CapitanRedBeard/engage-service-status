@@ -22,7 +22,17 @@ const initialState = {
     /**
      * status data
      */
-    statuses: {}
+    statuses: {
+        Auth: { 
+            code: 200, 
+            description: "OK",
+            build: {
+                artifact: "engage-user-service",
+                version: "0.3.0-SNAPSHOT",
+                buildNumber: "0dd42d5bc9-20180407_202946"
+            }
+        }
+    }
 };
 
 // Selectors
@@ -88,7 +98,10 @@ export const fetchAllStatuses = () =>
 
         services.forEach(async (service) => {
             try{
-                const status = await fetchServiceStatus({ environment, services }) 
+                console.log('Fetching', `https://pivotus.${environment.route}.engage.pivotus.io/api/${service.route}/status`)
+                const status = await fetchServiceStatus({ 
+                    environmentRoute: environment.route,
+                    serviceRoute: service.route}) 
                 dispatch(updateStatus({ status, serviceName: service.name }))
             } catch (e) {
                 console.warn(`Couldnt fetch service status ${service.name}`,e);
@@ -97,8 +110,8 @@ export const fetchAllStatuses = () =>
     }
 
 // Helpers 
-const fetchServiceStatus = ({environment, service}) => {
-    return axios.get(`https://pivotus.${environment}.engage.pivotus.io/api/${service}/status`)
+const fetchServiceStatus = ({environmentRoute, serviceRoute}) => {
+    return axios.get(`https://pivotus.${environmentRoute}.engage.pivotus.io/api/${serviceRoute}/status`)
 }
 
 // Reducer

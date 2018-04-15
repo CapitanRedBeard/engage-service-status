@@ -21,18 +21,19 @@ const initialState = {
     services: Services,
     /**
      * status data
+     * Example struct: {
+     *
+     *   Auth: {
+     *       code: 200,
+     *       description: "OK",
+     *       build: {
+     *         artifact: "engage-user-service",
+     *         version: "0.3.0-SNAPSHOT",
+     *         buildNumber: "0dd42d5bc9-20180407_202946"
+     *       }
+     *   }}
      */
-    statuses: {
-        Auth: { 
-            code: 200, 
-            description: "OK",
-            build: {
-                artifact: "engage-user-service",
-                version: "0.3.0-SNAPSHOT",
-                buildNumber: "0dd42d5bc9-20180407_202946"
-            }
-        }
-    }
+    statuses: {}
 };
 
 // Selectors
@@ -102,7 +103,7 @@ export const fetchAllStatuses = () =>
                 const status = await fetchServiceStatus({ 
                     environmentRoute: environment.route,
                     serviceRoute: service.route}) 
-                dispatch(updateStatus({ status, serviceName: service.name }))
+                dispatch(updateStatus({ status: status.data, serviceName: service.name }))
             } catch (e) {
                 console.warn(`Couldnt fetch service status ${service.name}`,e);
             }

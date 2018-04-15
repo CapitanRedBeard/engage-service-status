@@ -1,26 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
-import styles from './styles';
 
 const propTypes = {
-    services: PropTypes.array,
-    statuses: PropTypes.object.isRequired,
+    serviceName: PropTypes.string,
 };
 
 const defaultProps = {
-    services: [],
+    serviceName: '',
 };
 
 
-const UnloadedStatusCard = ({ serviceName, statuses }) => (
+const UnloadedStatusCard = ({ serviceName }) => (
     <Card
         loading
         key={`Service-${serviceName}`}
         title={`${serviceName} Service`}
-        style={styles.unloaded}
+        className='Card'
     >
-        Unloaded
     </Card>
 )
 

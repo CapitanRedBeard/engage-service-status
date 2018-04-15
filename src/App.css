@@ -1,5 +1,7 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,800');
 
 .App {
   text-align: center;
+  font-family: 'Nunito', sans-serif;
 }

@@ -2,3 +2,62 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.Card {
+  flex: 1;
+  min-width: 350px;
+  margin: 10px 20px;
+  background-color: #09D067;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.27);
+  border-color: transparent;
+}
+
+.Card--header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Card--title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.Card--statusWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.Card--status {
+  font-weight: 800;
+}
+
+.Card--descriptionWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.Card--descriptionFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Card--descriptionFieldWrapper--label {
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
+.Card--descriptionFieldWrapper--value {
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+}

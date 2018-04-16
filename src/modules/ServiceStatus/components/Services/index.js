@@ -28,12 +28,14 @@ const Services = ({ services, statuses }) => {
                                 <LoadedStatusCard
                                     serviceName={service.name}
                                     status={status} 
+                                    key={`Service-${service.name}`} 
                                 />
                             ) 
                             : (
                                 <UnloadedStatusCard
                                     serviceName={service.name}
                                     status={status}
+                                    key={`Service-${service.name}`} 
                                 />
                             )
                     )

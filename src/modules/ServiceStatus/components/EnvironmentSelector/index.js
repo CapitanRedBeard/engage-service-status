@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, Icon } from 'antd';
 import menu from './partials/Menu';
+import './EnvironmentSelector.css';
 
 const propTypes = {
     environment: PropTypes.object.isRequired,
@@ -15,8 +16,8 @@ const defaultProps = {
 
 const EnvironmentSelector = ({ environment, environments, selectEnvironment }) => (
     <Dropdown overlay={menu(environments, selectEnvironment)}>
-        <a className="ant-dropdown-link" >
-            {environment.name} <Icon type="down" />
+        <a className="ant-dropdown-link EnvironmentSelector--dropdown--label" >
+            {environment.name} environment <Icon type="down" className="EnvironmentSelector--dropdown--icon"/>
         </a>
     </Dropdown>
 );

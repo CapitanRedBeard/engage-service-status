@@ -1,0 +1,17 @@
+.EnvironmentSelector--dropdown--label {
+  font-size: 36px;
+  margin: 20px 0;
+  color: white;
+}
+
+.EnvironmentSelector--dropdown--icon {
+  font-size: 24px !important;
+}
+
+.EnvironmentSelector--dropdown--item {
+  font-size: 18px;
+}
+
+.EnvironmentSelector--dropdown--item--wrapper {
+  padding: 10px 20px;
+}

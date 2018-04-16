@@ -14,6 +14,14 @@
   border-color: transparent;
 }
 
+.Card--loading {
+  flex: 1;
+  min-width: 350px;
+  margin: 10px 20px;
+  background-color: #f2f2f2;
+  color:#333;
+}
+
 .Card--header {
   display: flex;
   justify-content: space-between;
@@ -45,19 +53,47 @@
 
 .Card--descriptionFieldWrapper {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .Card--descriptionFieldWrapper--label {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  flex: 0;
+  min-width: 150px;
   color: rgba(255,255,255,0.75);
   margin: 0;
 }
 
 .Card--descriptionFieldWrapper--value {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 14px;
+  flex: 1;
+  text-align: left;
   margin: 0;
+}
+
+.Card--loading--content {
+  margin: 5px 2% 0 0;
+}
+
+.Card--loading--block {
+    display: inline-block;
+    margin: 5px 2% 0 0;
+    height: 14px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(207, 216, 220, 0.2), rgba(207, 216, 220, 0.4), rgba(207, 216, 220, 0.2));
+    animation: card-loading 1.4s ease infinite;
+    background-size: 600% 600%;
+}
+
+@keyframes card-loading {
+  0%,
+  100% {
+		background-position: 0 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
 }

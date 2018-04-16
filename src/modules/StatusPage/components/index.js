@@ -19,7 +19,6 @@ class StatusPage extends React.Component {
 
     render() {
         return ([
-            <h3>Status</h3>,
             <EnvironmentSelector />,
             <Services />,
         ])

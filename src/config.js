@@ -2,20 +2,16 @@
 const Environments = [
     {
         name: 'Development',
-        route: 'dev',
+        route: 'https://pivotus.dev.engage.pivotus.io/api',
     },
     {
         name: 'QA',
-        route: 'qa',
+        route: 'https://pivotus.qa.engage.pivotus.io/api',
     },
     {
-        name: 'Sandbox',
-        route: 'sandbox',
+        name: 'Platform',
+        route: 'https://pivotus.plat.engage.pivotus.io/api',
     },
-    {
-        name: 'Production',
-        route: 'prod',
-    }
 ]
 
 const Services = [
@@ -33,7 +29,7 @@ const Services = [
     },
     {
         name: 'Profile',
-        route: 'profile',
+        route: 'profiles',
     },
     {
         name: 'Agents',

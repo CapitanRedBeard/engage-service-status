@@ -70,6 +70,7 @@ export const selector = {
 // Action Types
 export const CHANGE_ENVIRONMENT = 'engage-service-status/ServiceStatus/CHANGE_ENVIRONMENT';
 export const UPDATE_STATUS = 'engage-service-status/ServiceStatus/UPDATE_STATUS';
+export const CLEAR_STATUSES = 'engage-service-status/ServiceStatus/CLEAR_STATUSES';
 
 // Actions
 const changeEnvironment = environment => ({
@@ -83,23 +84,29 @@ const updateStatus = ({status, serviceName}) => ({
     status
 });
 
+const clearStatuses = () => ({
+    type: CLEAR_STATUSES,
+})
+
 // Thunks
 export const selectEnvironment = environmentName => dispatch => {
     const environmentIndex = Environments.findIndex(env => (
         env.name === environmentName
     ));
     dispatch(changeEnvironment(Environments[environmentIndex]));
+    dispatch(fetchAllStatuses());
 }
 
 export const fetchAllStatuses = () =>
     async (dispatch, getState) => {
+
+        dispatch(clearStatuses())
+
         const state = getState();
         const environment = getEnvironment(state);
         const services = getServices(state);
-
         services.forEach(async (service) => {
             try{
-                console.log('Fetching', `https://pivotus.${environment.route}.engage.pivotus.io/api/${service.route}/status`)
                 const status = await fetchServiceStatus({ 
                     environmentRoute: environment.route,
                     serviceRoute: service.route}) 
@@ -112,7 +119,7 @@ export const fetchAllStatuses = () =>
 
 // Helpers 
 const fetchServiceStatus = ({environmentRoute, serviceRoute}) => {
-    return axios.get(`https://pivotus.${environmentRoute}.engage.pivotus.io/api/${serviceRoute}/status`)
+    return axios.get(`${environmentRoute}/${serviceRoute}/status`)
 }
 
 // Reducer
@@ -127,6 +134,10 @@ export default (state = initialState, action) =>
             statuses: {
                 ...state.statuses,
                 [action.serviceName]: action.status,
-            }
+            },
+        }),
+        [CLEAR_STATUSES]: () => ({
+            ...state,
+            statuses: {},
         })
     })(state)(action.type);

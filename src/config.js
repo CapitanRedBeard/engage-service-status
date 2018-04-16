@@ -16,10 +16,6 @@ const Environments = [
 
 const Services = [
     {
-        name: 'Test',
-        route: 'test',
-    },
-    {
         name: 'Auth',
         route: 'auth',
     },

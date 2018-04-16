@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'antd';
+import { serviceIsOperational } from '../../index';
 import './Services.css';
 
 const propTypes = {
@@ -27,16 +28,14 @@ const StatusResponseDescriptionShape = [
     }
 ]
 
-const codeSuccess = (code) => code === 200
-
 const LoadedStatusCard = ({ serviceName, status }) => (
-    <Card key={`Service-${serviceName}`} className={`Card ${codeSuccess(status.code) ? 'Card--success' : 'Card--failure'}`} >
+    <Card key={`Service-${serviceName}`} className={`Card ${serviceIsOperational(status.code) ? 'Card--success' : 'Card--failure'}`} >
         <div>
             <div className='Card--header'>
                 <p className='Card--title'>{serviceName} Service</p>
                 <div className='Card--statusWrapper'>
                     <p className={`Card--status'}`}>
-                        {`${codeSuccess(status.code) ? '✓' : '✗'} ${status.code} ${status.description}`}
+                        {`${serviceIsOperational(status.code) ? '✓' : '✗'} ${status.code} ${status.description}`}
                     </p>
                 </div>
             </div>

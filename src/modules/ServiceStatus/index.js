@@ -3,7 +3,14 @@ import { Environments, Services } from '../../config.js';
 import switchcase from '../../utils/switchcase';
 import axios from 'axios';
 
-console.log('Services', Services)
+// Enum
+export const OverallStatusesEnums = {
+    operational: '✓ All Services are Operational',
+    degraded: '✗ Some Services Might be Degraded',
+}
+
+// Helpers
+export const serviceIsOperational = (code) => code === 200
 
 // Initial State
 const initialState = {
@@ -33,17 +40,8 @@ const initialState = {
      *       }
      *   }}
      */
-    statuses: {
-        Test: {
-            code: 301,
-            description: "Bad stuff",
-            build: {
-              artifact: "engage-user-service",
-              version: "0.3.0-SNAPSHOT",
-              buildNumber: "0dd42d5bc9-20180407_202946"
-            }
-        }
-    }
+    statuses: {},
+    overallStatus: null,
 };
 
 // Selectors
@@ -69,12 +67,29 @@ const getStatuses = createSelector(
     s => s.statuses
 );
 
+const getOverallStatus = createSelector(
+    getStatuses,
+    statuses => {
+        let overallStatus = null;
+        Object.keys(statuses).forEach((key) => {
+            const status = statuses[key];
+            if (overallStatus !== OverallStatusesEnums.degraded && serviceIsOperational(status.code)) {
+                overallStatus = OverallStatusesEnums.operational;
+            } else {
+                overallStatus = OverallStatusesEnums.degraded;
+            }
+        });
+        return overallStatus;
+    }
+);
+
 
 export const selector = {
     getEnvironment,
     getEnvironments,
     getServices,
-    getStatuses
+    getStatuses,
+    getOverallStatus,
 };
 
 // Action Types
@@ -110,7 +125,7 @@ export const selectEnvironment = environmentName => dispatch => {
 export const fetchAllStatuses = () =>
     async (dispatch, getState) => {
 
-        // dispatch(clearStatuses())
+        dispatch(clearStatuses())
 
         const state = getState();
         const environment = getEnvironment(state);

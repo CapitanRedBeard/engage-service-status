@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EnvironmentSelector from '../../ServiceStatus/containers/EnvironmentSelector';
 import Services from '../../ServiceStatus/containers/Services';
-import './StatusPage.css';
+import OverallStatus from '../../ServiceStatus/containers/OverallStatus';
 
 const propTypes = {
     fetchAllStatuses: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-    services: [],
 };
 
 class StatusPage extends React.Component {
@@ -19,6 +15,7 @@ class StatusPage extends React.Component {
 
     render() {
         return ([
+            <OverallStatus/>,
             <EnvironmentSelector />,
             <Services />,
         ])
@@ -28,6 +25,5 @@ class StatusPage extends React.Component {
 
 StatusPage.displayName = 'StatusPage';
 StatusPage.propTypes = propTypes;
-StatusPage.defaultProps = defaultProps;
 
 export default StatusPage;

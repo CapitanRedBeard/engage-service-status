@@ -15,11 +15,13 @@ const defaultProps = {
 };
 
 const EnvironmentSelector = ({ environment, environments, selectEnvironment }) => (
-    <Dropdown overlay={menu(environments, selectEnvironment)}>
-        <a className="ant-dropdown-link EnvironmentSelector--dropdown--label" >
-            {environment.name} environment <Icon type="down" className="EnvironmentSelector--dropdown--icon"/>
-        </a>
-    </Dropdown>
+    <div className="EnvironmentSelector">
+        <Dropdown overlay={menu(environments, selectEnvironment)}>
+            <a className="ant-dropdown-link EnvironmentSelector--dropdown--label" >
+                {environment.name} environment <Icon type="down" className="EnvironmentSelector--dropdown--icon" />
+            </a>
+        </Dropdown>
+    </div>
 );
 
 EnvironmentSelector.displayName = 'EnvironmentSelector';

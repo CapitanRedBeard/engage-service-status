@@ -1,6 +1,9 @@
+.EnvironmentSelector {
+  margin: 20px 0;
+}
+
 .EnvironmentSelector--dropdown--label {
   font-size: 36px;
-  margin: 20px 0;
   color: white;
 }
 

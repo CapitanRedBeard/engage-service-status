@@ -14,37 +14,32 @@ const defaultProps = {
     services: [],
 };
 
-const Services = ({ services, statuses }) => {
-    console.log('Services: ', services)
-    console.log('statuses: ', statuses)
-    return (
-        <div className="Services">
-            {
-                services.map(service => {
-                    const status = statuses[service.name];
-                    return (
-                        status
-                            ? (
-                                <LoadedStatusCard
-                                    serviceName={service.name}
-                                    status={status} 
-                                    key={`Service-${service.name}`} 
-                                />
-                            ) 
-                            : (
-                                <UnloadedStatusCard
-                                    serviceName={service.name}
-                                    status={status}
-                                    key={`Service-${service.name}`} 
-                                />
-                            )
-                    )
-                })
-            }
-        </div>
-    );
-}
-
+const Services = ({ services, statuses }) => (
+    <div className="Services">
+        {
+            services.map(service => {
+                const status = statuses[service.name];
+                return (
+                    status
+                        ? (
+                            <LoadedStatusCard
+                                serviceName={service.name}
+                                status={status} 
+                                key={`Service-${service.name}`} 
+                            />
+                        ) 
+                        : (
+                            <UnloadedStatusCard
+                                serviceName={service.name}
+                                status={status}
+                                key={`Service-${service.name}`} 
+                            />
+                        )
+                )
+            })
+        }
+    </div>
+);
 Services.displayName = 'Services';
 Services.propTypes = propTypes;
 Services.defaultProps = defaultProps;

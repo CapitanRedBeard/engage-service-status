@@ -41,6 +41,9 @@ const initialState = {
      *   }}
      */
     statuses: {},
+    /**
+     * Message of the overall status
+     */
     overallStatus: null,
 };
 

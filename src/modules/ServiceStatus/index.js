@@ -33,7 +33,17 @@ const initialState = {
      *       }
      *   }}
      */
-    statuses: {}
+    statuses: {
+        Test: {
+            code: 301,
+            description: "Bad stuff",
+            build: {
+              artifact: "engage-user-service",
+              version: "0.3.0-SNAPSHOT",
+              buildNumber: "0dd42d5bc9-20180407_202946"
+            }
+        }
+    }
 };
 
 // Selectors
@@ -100,7 +110,7 @@ export const selectEnvironment = environmentName => dispatch => {
 export const fetchAllStatuses = () =>
     async (dispatch, getState) => {
 
-        dispatch(clearStatuses())
+        // dispatch(clearStatuses())
 
         const state = getState();
         const environment = getEnvironment(state);

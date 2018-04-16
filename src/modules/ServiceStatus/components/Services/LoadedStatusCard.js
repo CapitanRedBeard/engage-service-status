@@ -27,7 +27,7 @@ const StatusResponseDescriptionShape = [
     }
 ]
 
-const codeSuccess = (code) => code === 200 ? 'k': 'x'
+const codeSuccess = (code) => code === 200
 
 const LoadedStatusCard = ({ serviceName, status }) => (
     <Card key={`Service-${serviceName}`} className={`Card ${codeSuccess(status.code) ? 'Card--success' : 'Card--failure'}`} >
